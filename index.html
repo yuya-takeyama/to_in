@@ -11,10 +11,11 @@
         $output = $('#output'),
         toA,
         mapQuote,
-        mapIndent;
+        mapIndent,
+        filterEmpty;
 
       toA = function (input) {
-        return '(\n' + mapIndent(mapQuote(input.split(/(?:\r?\n)+/))).join(",\n") + '\n)\n';
+        return '(\n' + mapIndent(mapQuote(filterEmpty(input.split(/(?:\r?\n)+/)))).join(",\n") + '\n)\n';
       };
 
       mapQuote = function (strs) {
@@ -26,6 +27,12 @@
       mapIndent = function (strs) {
         return strs.map(function (str) {
           return '  ' + str;
+        });
+      };
+
+      filterEmpty = function (strs) {
+        return strs.filter(function (str) {
+          return str !== '';
         });
       };
 
