@@ -47,12 +47,20 @@
 
   window.onload = function() {
     var btn = document.getElementById('copy_button'),
-      input = document.getElementById('output'),
+      input = document.getElementById('output')
+      feedback = document.getElementById('copy_feedback'),
       clip = new ZeroClipboard(btn);
 
     clip.on('ready', function() {
       clip.on('beforecopy', function() {
         btn.dataset.clipboardText = input.value;
+      });
+
+      clip.on('aftercopy', function () {
+        feedback.innerHTML = 'Copied!';
+        window.setTimeout(function () {
+          feedback.innerHTML = '';
+        }, 500);
       });
     });
   };
@@ -68,7 +76,7 @@
 
     <h2>Output</h3>
     <textarea id="output" cols="80" rows="20"></textarea>
-    <input type="button" id="copy_button" value="copy">
+    <input type="button" id="copy_button" value="copy"> <span id="copy_feedback"></span>
   </form>
 </body>
 </html>
