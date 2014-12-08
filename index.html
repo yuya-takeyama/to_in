@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>to_a</title>
   <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/ZeroClipboard.min.js"></script>
   <script>
   (function ($) {
     $(function () {
@@ -43,6 +44,18 @@
       });
     });
   })(jQuery);
+
+  window.onload = function() {
+    var btn = document.getElementById('copy_button'),
+      input = document.getElementById('output'),
+      clip = new ZeroClipboard(btn);
+
+    clip.on('ready', function() {
+      clip.on('beforecopy', function() {
+        btn.dataset.clipboardText = input.value;
+      });
+    });
+  };
   </script>
 </head>
 <body>
@@ -51,10 +64,11 @@
   <form id="to_a_form">
     <h2>Input</h2>
     <textarea id="input" cols="80" rows="20"></textarea>
-    <input type="submit" id="button" value="to_a" >
+    <input type="submit" id="button" value="to_a">
 
     <h2>Output</h3>
     <textarea id="output" cols="80" rows="20"></textarea>
+    <input type="button" id="copy_button" value="copy">
   </form>
 </body>
 </html>
