@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>to_a</title>
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script>
+  (function ($) {
+    $(function () {
+      var $input = $('#input'),
+        $output = $('#output'),
+        toA,
+        mapQuote,
+        mapIndent;
+
+      toA = function (input) {
+        return '(\n' + mapIndent(mapQuote(input.split(/(?:\r?\n)+/))).join(",\n") + '\n)\n';
+      };
+
+      mapQuote = function (strs) {
+        return strs.map(function (str) {
+          return "'" + str + "'";
+        });
+      };
+
+      mapIndent = function (strs) {
+        return strs.map(function (str) {
+          return '  ' + str;
+        });
+      };
+
+      $('#to_a_form').submit(function (event) {
+        event.preventDefault();
+
+        $output.val(toA($input.val()));
+      });
+    });
+  })(jQuery);
+  </script>
+</head>
+<body>
+  <h1>to_a</h1>
+
+  <form id="to_a_form">
+    <h2>Input</h2>
+    <textarea id="input" cols="80" rows="20"></textarea>
+    <input type="submit" id="button" value="to_a" >
+
+    <h2>Output</h3>
+    <textarea id="output" cols="80" rows="20"></textarea>
+  </form>
+</body>
+</html>
