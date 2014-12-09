@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>to_a</title>
+  <title>to_in</title>
   <script src="./js/jquery-2.1.1.min.js"></script>
   <script src="./js/ZeroClipboard.min.js"></script>
   <script>
@@ -37,7 +37,7 @@
         });
       };
 
-      $('#to_a_form').submit(function (event) {
+      $('#to_in_form').submit(function (event) {
         event.preventDefault();
 
         $output.val(toA($input.val()));
@@ -72,12 +72,12 @@
   </style>
 </head>
 <body>
-  <h1>to_a</h1>
+  <h1>to_in</h1>
 
-  <form id="to_a_form">
+  <form id="to_in_form">
     <h2>Input</h2>
     <textarea id="input" cols="80" rows="20"></textarea>
-    <input type="submit" id="button" value="to_a">
+    <input type="submit" id="button" value="to_in">
 
     <h2>Output</h3>
     <textarea id="output" cols="80" rows="20"></textarea>
